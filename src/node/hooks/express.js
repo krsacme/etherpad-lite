@@ -9,8 +9,8 @@ var  _ = require("underscore");
 var server;
 var serverName;
 
-var app_ip = process.env.OPENSHIFT_NODEJS_IP || settings.ip;
-var app_port = process.env.OPENSHIFT_NODEJS_PORT || settings.port;
+var app_ip = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
+var app_port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080;
 
 exports.createServer = function () {
   console.log("Report bugs at https://github.com/ether/etherpad-lite/issues")
