@@ -9,6 +9,9 @@ var  _ = require("underscore");
 var server;
 var serverName;
 
+var app_ip = process.env.OPENSHIFT_NODEJS_IP || settings.ip;
+var app_port = process.env.OPENSHIFT_NODEJS_PORT || settings.port;
+
 exports.createServer = function () {
   console.log("Report bugs at https://github.com/ether/etherpad-lite/issues")
 
@@ -18,9 +21,9 @@ exports.createServer = function () {
 
   exports.restartServer();
 
-  console.log("You can access your Etherpad instance at http://" + settings.ip + ":" + settings.port + "/");
+  console.log("You can access your Etherpad instance at http://" + app_ip + ":" + app_port + "/");
   if(!_.isEmpty(settings.users)){
-    console.log("The plugin admin page is at http://" + settings.ip + ":" + settings.port + "/admin/plugins");
+    console.log("The plugin admin page is at http://" + app_ip + ":" + app_port + "/admin/plugins");
   }
   else{
     console.warn("Admin username and password not set in settings.json.  To access admin please uncomment and edit 'users' in settings.json");
@@ -82,6 +85,7 @@ exports.restartServer = function () {
 
   hooks.callAll("expressConfigure", {"app": app});
   hooks.callAll("expressCreateServer", {"app": app, "server": server});
+  
 
-  server.listen(settings.port, settings.ip);
+  server.listen(app_port, app_ip);
 }
