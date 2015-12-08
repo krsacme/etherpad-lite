@@ -44,6 +44,7 @@
    "dbSettings" : {
                     "user"    : "OPENSHIFT_DB_USER",
                     "host"    : "OPENSHIFT_DB_HOST",
+                    "port"    : "OPENSHIFT_DB_PORT",
                     "password": "OPENSHIFT_DB_PASS",
                     "database": "OPENSHIFT_DB_NAME"
                   },
